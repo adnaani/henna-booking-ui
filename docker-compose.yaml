@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./henna-booking-frontend
+    container_name: henna_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    networks:
+      - henna_net
+
+  api:
+    build: ./henna-booking-backend
+    container_name: henna_api
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - henna_net
+
+  db:
+    image: postgres:15
+    container_name: henna_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - henna_net
+
+volumes:
+  postgres_data:
+
+networks:
+  henna_net:

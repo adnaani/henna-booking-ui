@@ -1,59 +1,120 @@
-# HennaBookingUi
+# Henna Booking System — Frontend (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+Modern Angular frontend for the Henna Booking System. Built with standalone APIs, Docker, and Nginx to pair seamlessly with the NestJS backend.
 
-## Development server
+This frontend handles:
+- Public booking flows (customers)
+- Admin dashboard (artist/admin)
+- API communication with the backend
+- Production-ready static hosting via Docker + Nginx
 
-To start a local development server, run:
+## Project Goals
+- Modern Angular (standalone components, no NgModules)
+- Clear split between public and admin areas
+- Production-safe deployment (no `ng serve` in prod)
+- Simple local dev with hot reload
+- Dockerised flow that mirrors real deployments
 
-```bash
-ng serve
+## Tech Stack
+- Angular 17+ (standalone APIs)
+- TypeScript
+- Standalone Router
+- HttpClient
+- Docker
+- Nginx (static hosting + reverse proxy)
+- Prettier
+
+## Project Structure
+```
+src/
+├─ app/
+│  ├─ core/        # services (API, interceptors)
+│  ├─ public/      # public booking pages
+│  ├─ admin/       # admin dashboard
+│  ├─ app.component.ts
+│  ├─ app.config.ts
+│  └─ app.routes.ts
+├─ environments/
+│  ├─ environment.ts
+│  └─ environment.prod.ts
+└─ main.ts
+```
+Key points: no NgModules; all components are `standalone: true`; routing provided via `provideRouter`.
+
+## Environment Configuration
+`environment.ts` (local development)
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000',
+};
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+`environment.prod.ts` (Docker / production)
+```ts
+export const environment = {
+  production: true,
+  apiUrl: '/api',
+};
 ```
+In production, API requests are proxied through Nginx to the backend.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+## Running the App
+1) Local development (hot reload)
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
+npm install
+npm start
 ```
+Serves via `ng serve` at http://localhost:4200.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+2) Production build (Angular only)
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+npm run build
 ```
+Outputs optimized static files to `dist/`.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Docker & Deployment
+- Frontend is served as static files by Nginx; Angular is not run in Docker.
+- Typical Dockerfile flow:
+  - Stage 1: Build Angular app with Node
+  - Stage 2: Copy build into Nginx image
+- Results: small image, no Node.js in prod, fast startup, secure deployment.
 
-## Additional Resources
+Nginx responsibilities:
+- Serve Angular static files
+- Handle client-side routing (`try_files`)
+- Proxy API calls from `/api/*` → backend container
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Example scripts (adjust to your setup):
+- Build image: `npm run docker:build`
+- Run FE container: `npm run docker:run` (serve at http://localhost:8080)
+- Full stack (FE + BE + DB): `npm run docker:up:build`
+- View logs: `npm run docker:logs`
+- Stop containers: `npm run docker:down`
+
+## Backend Connectivity
+- Local (no Docker): Angular → `http://localhost:3000`
+- Docker / prod: Angular → `/api` → Nginx → backend container
+
+## Formatting
+```
+npm run format
+```
+Uses Prettier (Angular HTML supported).
+
+## Deliberately Avoids
+- NgModules
+- Running `ng serve` in Docker
+- Hard-coded backend URLs in prod
+- Complex runtime env injection
+
+## Roadmap
+- Booking flow UI
+- Availability calendar
+- Admin dashboard features
+- Auth guards
+- Styling & UX polish
+- CI/CD integration
+
+## Author Notes
+Designed to reflect modern Angular best practices, integrate cleanly with NestJS, deploy on a single EC2 instance, and scale without rewrites.
