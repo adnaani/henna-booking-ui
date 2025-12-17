@@ -1,0 +1,26 @@
+<div class="space-y-1">
+  <label *ngIf="label" class="block text-sm font-medium text-charcoal">
+    {{ label }}
+  </label>
+
+  <input
+    [type]="type"
+    [value]="value"
+    [placeholder]="placeholder"
+    [ngClass]="{
+      'border-nude focus:border-accent focus:ring-accent': !error,
+      'border-charcoal focus:border-charcoal focus:ring-charcoal': error
+    }"
+    class="
+      w-full rounded-md border bg-white
+      px-3 py-2 text-sm
+      text-charcoal placeholder-muted
+      shadow-sm
+      focus:outline-none focus:ring-1
+    "
+  />
+
+  <p *ngIf="error" class="text-sm text-charcoal">
+    {{ error }}
+  </p>
+</div>
