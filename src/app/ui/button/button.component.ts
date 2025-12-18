@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ui-button',
+  selector: 'app-button',
   standalone: true,
   imports: [NgClass],
   templateUrl: './button.component.html',

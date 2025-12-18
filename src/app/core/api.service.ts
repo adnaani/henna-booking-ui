@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -11,7 +11,7 @@ interface HealthResponse {
 export class ApiService {
   private readonly baseUrl = environment.apiUrl;
 
-  constructor(private readonly http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   getHealth(): Observable<HealthResponse> {
     return this.http.get<HealthResponse>(`${this.baseUrl}/health`);

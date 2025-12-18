@@ -1,0 +1,21 @@
+app-booking-step-transition {
+  display: block;
+  position: relative;
+}
+
+app-booking-step-transition .step {
+  position: relative;
+  animation: stepEnter 260ms cubic-bezier(0.2, 0, 0, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes stepEnter {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

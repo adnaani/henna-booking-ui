@@ -1,9 +1,15 @@
 <div class="space-y-1">
-  <label *ngIf="label" class="block text-sm font-medium text-charcoal">
-    {{ label }}
-  </label>
+  @if (label) {
+    <label
+      class="block text-sm font-medium text-charcoal"
+      [attr.for]="inputId"
+    >
+      {{ label }}
+    </label>
+  }
 
   <input
+    [id]="inputId"
     [type]="type"
     [value]="value"
     [placeholder]="placeholder"
@@ -20,7 +26,9 @@
     "
   />
 
-  <p *ngIf="error" class="text-sm text-charcoal">
-    {{ error }}
-  </p>
+  @if (error) {
+    <p class="text-sm text-charcoal">
+      {{ error }}
+    </p>
+  }
 </div>

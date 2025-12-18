@@ -1,0 +1,15 @@
+<app-booking-step-transition>
+  @if (step() === 'location') {
+    <div class="step">
+      <app-location-step
+        (selected)="onLocationSelected($event); goTo('group')"
+      />
+    </div>
+  }
+
+  @if (step() === 'group') {
+    <div class="step">
+      <app-group-step (selected)="onGroupType($event)" />
+    </div>
+  }
+</app-booking-step-transition>

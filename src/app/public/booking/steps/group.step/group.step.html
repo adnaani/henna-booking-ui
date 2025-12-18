@@ -1,0 +1,33 @@
+<header class="step-header">
+  <div>
+    <div class="eyebrow">Step 2 — Group type</div>
+    <h1 class="title">Who is this appointment for?</h1>
+    <p class="helper">Choose solo or group so we can tailor slots and pricing.</p>
+  </div>
+  <div class="progress" aria-label="Progress 2 of 6">
+    <span class="dot active"></span>
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</header>
+
+<div class="option-grid">
+  <app-select-row
+    title="Solo booking"
+    subtitle="Just you for this appointment"
+    meta="Fast booking • Standard duration"
+    [selected]="selectedType() === 'solo'"
+    (selectionChange)="select('solo')"
+  ></app-select-row>
+
+  <app-select-row
+    title="Group booking"
+    subtitle="Multiple people in one session"
+    meta="We’ll plan duration • May need extra artist"
+    [selected]="selectedType() === 'group'"
+    (selectionChange)="select('group')"
+  ></app-select-row>
+</div>

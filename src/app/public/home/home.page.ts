@@ -1,15 +1,15 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../core/api.service';
+import { ApiService } from '../../core/api.service';
 
 @Component({
   standalone: true,
-  selector: 'app-public-home',
+  selector: 'app-home',
   imports: [CommonModule],
-  templateUrl :'./public-home.component.html',
-  styleUrl: './public-home.component.css'
+  templateUrl :'./home.page.html',
+  styleUrl: './home.page.css'
 })
-export class PublicHomeComponent implements OnInit {
+export class HomePage implements OnInit {
   private readonly api = inject(ApiService);
 
   ngOnInit(): void {
