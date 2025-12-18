@@ -1,0 +1,11 @@
+.currency {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.amount {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #141414;
+  letter-spacing: -0.01em;
+}

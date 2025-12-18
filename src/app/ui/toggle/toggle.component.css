@@ -1,0 +1,6 @@
+/* Minimal wrapper around Material slide toggle. */
+mat-slide-toggle {
+  --mat-mdc-slide-toggle-selected-handle-color: #e879f9;
+  --mat-mdc-slide-toggle-selected-bar-color: #f5d0fe;
+  --mat-mdc-slide-toggle-selected-label-color: #141414;
+}

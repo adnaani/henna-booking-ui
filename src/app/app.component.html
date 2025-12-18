@@ -1,41 +1,4 @@
-<main class="app-shell">
-  <header class="app-header">
-    <div class="brand">Henna Booking UI</div>
-    <div class="text-sm text-muted">Design system preview</div>
-  </header>
-
-  <section class="app-content space-y-6">
-    <div class="space-y-2">
-      <h2 class="text-xl font-semibold text-charcoal">UI components</h2>
-      <p class="text-sm text-muted">Quick glance at inputs, cards, and buttons.</p>
-    </div>
-
-    <div class="grid gap-5">
-      <ui-input
-        label="Client name"
-        placeholder="Enter full name"
-      />
-
-      <ui-input
-        label="Email"
-        type="email"
-        error="Please enter a valid email"
-      />
-
-      <ui-card>
-        <h3 class="text-lg font-semibold mb-1">Booking details</h3>
-        <p class="text-sm text-muted">Henna session – 45 mins</p>
-      </ui-card>
-
-      <div class="flex flex-wrap gap-3 pt-2">
-        <ui-button>Book appointment</ui-button>
-        <ui-button variant="secondary">Cancel</ui-button>
-        <ui-button variant="danger" [loading]="true">Delete</ui-button>
-        <ui-button variant="primary" (click)="openDialog()">Open dialog</ui-button>
-      </div>
-    </div>
-  </section>
-
+<main class="app-shell step-shell">
   <section class="app-content mt-6">
     <router-outlet />
   </section>

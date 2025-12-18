@@ -1,0 +1,12 @@
+<label class="flex items-center gap-3 cursor-pointer" [attr.for]="toggleId">
+  @if (label) {
+    <span class="text-sm font-medium text-charcoal">{{ label }}</span>
+  }
+  <mat-slide-toggle
+    [id]="toggleId"
+    color="primary"
+    [checked]="checked"
+    [disabled]="disabled"
+    (change)="onToggle($event.checked)"
+  ></mat-slide-toggle>
+</label>

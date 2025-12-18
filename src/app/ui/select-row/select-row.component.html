@@ -1,0 +1,17 @@
+<button
+  type="button"
+  class="row"
+  [ngClass]="{ selected }"
+  (click)="onClick()"
+>
+  <div class="text-block">
+    <div class="title">{{ title }}</div>
+    @if (subtitle) {
+      <div class="subtitle">{{ subtitle }}</div>
+    }
+    @if (meta) {
+      <div class="meta">{{ meta }}</div>
+    }
+  </div>
+  <div aria-hidden="true" class="chevron">→</div>
+</button>

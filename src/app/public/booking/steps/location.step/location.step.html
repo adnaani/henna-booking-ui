@@ -1,0 +1,33 @@
+<header class="step-header">
+  <div>
+    <div class="eyebrow">Step 1 — Location Type</div>
+    <h1 class="title">Choose a service location</h1>
+    <p class="helper">This helps us show the right services and availability</p>
+  </div>
+  <div class="progress" aria-label="Progress 1 of 6">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</header>
+
+<div class="option-grid">
+  <app-select-row
+    title="Home Visit"
+    subtitle="You visit us at our location"
+    meta="Usually lower cost • No address needed"
+    [selected]="selectedType() === 'home'"
+    (selectionChange)="select('home')"
+  ></app-select-row>
+
+  <app-select-row
+    title="Mobile Service"
+    subtitle="We come to your home or venue"
+    meta="Travel fee applies • Address required"
+    [selected]="selectedType() === 'mobile'"
+    (selectionChange)="select('mobile')"
+  ></app-select-row>
+</div>
